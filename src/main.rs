@@ -1,9 +1,12 @@
 use std::net::TcpListener;
+use tag_api::{startup::run, configuration::get_configuration};
 
 #[tokio::main]
 async fn main() -> Result<(), std::io::Error> {
-    let listener = TcpListener::bind("127.0.0.1:8000")
-        .expect("Failed to bind random port.");
+    let configuration = get_configuration().expect("Failed to read configuration.");
 
-    tag_api::run(listener)?.await
+    let address = format!("127.0.0.1:{}", configuration.application_port);
+    let listener = TcpListener::bind(address)?;
+
+    run(listener)?.await
 }
