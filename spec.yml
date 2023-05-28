@@ -15,3 +15,25 @@ services:
     instance_size_slug: basic-xxs
     routes:
       - path: /
+    envs:
+      - key: APP_DATABASE__USERNAME
+        scope: RUN_TIME
+        value: ${tag.USERNAME}
+      - key: APP_DATABASE__PASSWORD
+        scope: RUN_TIME
+        value: ${tag.PASSWORD}
+      - key: APP_DATABASE__HOST
+        scope: RUN_TIME
+        value: ${tag.HOSTNAME}
+      - key: APP_DATABASE__PORT
+        scope: RUN_TIME
+        value: ${tag.PORT}
+      - key: APP_DATABASE__DATABASE_NAME
+        scope: RUN_TIME
+        value: ${tag.DATABASE}
+databases:
+  - engine: PG
+    name: tag
+    num_nodes: 1
+    size: db-s-dev-database
+    version: '12'
