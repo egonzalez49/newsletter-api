@@ -14,11 +14,16 @@ name = "tag_api"
 
 [dependencies]
 actix-web = "4.3.1"
+actix-web-flash-messages = { version = "0.4", features = ["cookies"] }
 anyhow = "1"
 argon2 = { version = "0.4", features = ["std"] }
 base64 = "0.21"
 chrono = { version = "0.4.22", default-features = false, features = ["clock"] }
 config = "0.13"
+hex = "0.4"
+hmac = { version = "0.12", features = ["std"] }
+htmlescape = "0.3"
+sha2 = "0.10"
 secrecy = { version = "0.8", features = ["serde"] }
 serde = { version = "1", features = ["derive"] }
 serde-aux = "4"
@@ -31,6 +36,7 @@ tracing-bunyan-formatter = "0.3"
 tracing-log = "0.1"
 rand = { version = "0.8", features=["std_rng"] }
 unicode-segmentation = "1"
+urlencoding = "2"
 uuid = { version = "1", features = ["v4"] }
 validator = "0.16"
 
@@ -50,7 +56,7 @@ features = [
 [dependencies.reqwest]
 version = "0.11"
 default-features = false
-features = ["json", "rustls-tls"]
+features = ["json", "rustls-tls", "cookies"]
 
 [dev-dependencies]
 claims = "0.7"
